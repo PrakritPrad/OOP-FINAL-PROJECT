@@ -9,15 +9,25 @@
     {
       "fullname": "John Doe",
       "username": "username1",
-      "studentId": "12345678"
+      "studentId": "68010756"
+    },
+    {
+      "fullname": "Prakrit khwanpatthalung",
+      "username": "PrakritPrad",
+      "studentId": "68010653"
+    },
+    {
+      "fullname": "John Doe",
+      "username": "username1",
+      "studentId": "68011141"
     }
   ],
   "project": {
     "model": {
-      "id": null,
-      "name": null
+      "id": 0,
+      "name": "User & Organization Management"
     },
-    "sumStudentId": null
+    "sumStudentId": 204032550
   },
   "scripts": {
     "build": "nest build",
