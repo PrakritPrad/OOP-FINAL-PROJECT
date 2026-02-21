@@ -1,3 +1,5 @@
+import { BaseEntity } from '../../../common/interfaces/base-entity';
+
 export enum OrganizationStatus {
   ACTIVE = 'ACTIVE',
   INACTIVE = 'INACTIVE',
@@ -14,8 +16,7 @@ export enum OrganizationType {
   HEALTHCARE = 'HEALTHCARE',
 }
 
-export class Organization {
-  id!: string;
+export class Organization extends BaseEntity {
   name!: string;
   registrationNumber!: string;
   description!: string;
@@ -32,6 +33,4 @@ export class Organization {
   numberOfEmployees!: number;
   logo?: string;
   taxId!: string;
-  createdAt!: string;
-  updatedAt!: string;
 }

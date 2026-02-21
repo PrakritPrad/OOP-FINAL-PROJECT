@@ -1,3 +1,5 @@
+import { BaseEntity } from '../../../common/interfaces/base-entity';
+
 export enum UserRole {
     ADMIN = 'ADMIN',
     MANAGER = 'MANAGER',
@@ -10,8 +12,7 @@ export enum UserStatus {
     SUSPENDED = 'SUSPENDED',
 }
 
-export class User {
-    id!: string;
+export class User extends BaseEntity {
     fullName!: string;
     email!: string;
     phone!: string;
@@ -20,6 +21,4 @@ export class User {
     organizationId!: string;
     department!: string;
     position!: string;
-    createdAt!: string;
-    updatedAt!: string;
 }
