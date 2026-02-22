@@ -49,18 +49,18 @@ export class LowdbService implements OnModuleInit {
 
 	// Generic helpers
 	async getAll<T extends keyof DBSchema>(collection: T): Promise<DBSchema[T]> {
-		await this.read();
+		//await this.read();
 		return this.data[collection];
 	}
 
 	async findById<T extends keyof DBSchema>(collection: T, id: string): Promise<DBSchema[T][number] | null> {
-		await this.read();
+		//await this.read();
 		const records = this.data[collection] as BaseEntity[];
 		return (records.find((r) => r.id === id) as DBSchema[T][number]) ?? null;
 	}
 
 	async insert<T extends keyof DBSchema>(collection: T, item: DBSchema[T][number]): Promise<DBSchema[T][number]> {
-		await this.read();
+		//await this.read();
 		const arr = this.data[collection] as BaseEntity[];
 		arr.push(item as BaseEntity);
 		await this.write();
@@ -72,7 +72,7 @@ export class LowdbService implements OnModuleInit {
 		id: string,
 		patch: Partial<DBSchema[T][number]>,
 	): Promise<DBSchema[T][number] | null> {
-		await this.read();
+		//await this.read();
 		const arr = this.data[collection] as BaseEntity[];
 		const idx = arr.findIndex((r) => r.id === id);
 		if (idx === -1) return null;
@@ -82,7 +82,7 @@ export class LowdbService implements OnModuleInit {
 	}
 
 	async remove<T extends keyof DBSchema>(collection: T, id: string): Promise<boolean> {
-		await this.read();
+		//await this.read();
 		const arr = this.data[collection] as BaseEntity[];
 		const idx = arr.findIndex((r) => r.id === id);
 		if (idx === -1) return false;
@@ -91,3 +91,6 @@ export class LowdbService implements OnModuleInit {
 		return true;
 	}
 }
+
+//commented out some of "await this.read();" calls to improve performance, since we are keeping the data in memory and only writing to disk when changes are made. 
+// If you want to ensure that you always have the latest data from disk, you can uncomment those lines. 
