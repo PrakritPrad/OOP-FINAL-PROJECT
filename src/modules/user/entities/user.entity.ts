@@ -21,4 +21,8 @@ export class User extends BaseEntity {
     organizationId!: string;
     department!: string;
     position!: string;
+    bio?: string;
+    avatarUrl?: string;
+    isEmailVerified!: boolean;
+    timezone!: string; lastLoginAt?: string;
 }
