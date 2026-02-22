@@ -1,10 +1,13 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { promises as fs } from 'fs';
 import { join } from 'path';
+import { User } from '../../modules/user/entities/user.entity';
+import { Organization } from '../../modules/organization/entities/organization.entity';
+import { BaseEntity } from '../interfaces/base-entity';
 
 type DBSchema = {
-	users: any[];
-	organizations: any[];
+	users: User[];
+	organizations: Organization[];
 };
 
 @Injectable()
@@ -45,36 +48,42 @@ export class LowdbService implements OnModuleInit {
 	}
 
 	// Generic helpers
-	async getAll<T extends keyof DBSchema>(collection: T) {
+	async getAll<T extends keyof DBSchema>(collection: T): Promise<DBSchema[T]> {
 		await this.read();
-		return this.data[collection] as DBSchema[T];
+		return this.data[collection];
 	}
 
-	async findById<T extends keyof DBSchema>(collection: T, id: string) {
+	async findById<T extends keyof DBSchema>(collection: T, id: string): Promise<DBSchema[T][number] | null> {
 		await this.read();
-		return (this.data[collection] as any[]).find((r) => r.id === id) || null;
+		const records = this.data[collection] as BaseEntity[];
+		return (records.find((r) => r.id === id) as DBSchema[T][number]) ?? null;
 	}
 
-	async insert<T extends keyof DBSchema>(collection: T, item: any) {
+	async insert<T extends keyof DBSchema>(collection: T, item: DBSchema[T][number]): Promise<DBSchema[T][number]> {
 		await this.read();
-		(this.data[collection] as any[]).push(item);
+		const arr = this.data[collection] as BaseEntity[];
+		arr.push(item as BaseEntity);
 		await this.write();
 		return item;
 	}
 
-	async update<T extends keyof DBSchema>(collection: T, id: string, patch: Partial<any>) {
+	async update<T extends keyof DBSchema>(
+		collection: T,
+		id: string,
+		patch: Partial<DBSchema[T][number]>,
+	): Promise<DBSchema[T][number] | null> {
 		await this.read();
-		const arr = this.data[collection] as any[];
+		const arr = this.data[collection] as BaseEntity[];
 		const idx = arr.findIndex((r) => r.id === id);
 		if (idx === -1) return null;
 		arr[idx] = { ...arr[idx], ...patch };
 		await this.write();
-		return arr[idx];
+		return arr[idx] as DBSchema[T][number];
 	}
 
-	async remove<T extends keyof DBSchema>(collection: T, id: string) {
+	async remove<T extends keyof DBSchema>(collection: T, id: string): Promise<boolean> {
 		await this.read();
-		const arr = this.data[collection] as any[];
+		const arr = this.data[collection] as BaseEntity[];
 		const idx = arr.findIndex((r) => r.id === id);
 		if (idx === -1) return false;
 		arr.splice(idx, 1);
