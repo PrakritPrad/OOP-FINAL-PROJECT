@@ -13,6 +13,8 @@ export enum UserStatus {
 }
 
 export class User extends BaseEntity {
+    username!: string;
+    password!: string;
     fullName!: string;
     email!: string;
     phone!: string;
@@ -24,5 +26,8 @@ export class User extends BaseEntity {
     bio?: string;
     avatarUrl?: string;
     isEmailVerified!: boolean;
-    timezone!: string; lastLoginAt?: string;
+    timezone!: string;
+    lastLoginAt?: string;
 }
+
+export type SafeUser = Omit<User, 'password'>;

@@ -20,6 +20,8 @@ async function bootstrap(): Promise<void> {
     .setTitle('User & Organization Management API')
     .setDescription('REST API for managing Users and Organizations — NestJS Final Project (Model Set 0)')
     .setVersion('1.0')
+    .addBearerAuth()
+    .addTag('Auth')
     .addTag('Users')
     .addTag('Organizations')
     .build();
