@@ -1,14 +1,17 @@
 import {
-  Controller, Get, Post, Body, Patch, Param, Delete, Put, HttpCode, HttpStatus,
+  Controller, Get, Post, Body, Patch, Param, Delete, Put, HttpCode, HttpStatus, UseGuards,
 } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiResponse as SwaggerApiResponse } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiResponse as SwaggerApiResponse, ApiBearerAuth } from '@nestjs/swagger';
 import { OrganizationService } from './organization.service';
 import { CreateOrganizationDto } from './dto/create-organization.dto';
 import { UpdateOrganizationDto } from './dto/update-organization.dto';
 import { ApiResponse } from '../../common/interfaces/api-response.interface';
 import { Organization } from './entities/organization.entity';
+import { JwtAuthGuard } from '../auth/guards/jwt.guard';
 
 @ApiTags('Organizations')
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 @Controller('organizations')
 export class OrganizationController {
   constructor(private readonly organizationService: OrganizationService) { }
