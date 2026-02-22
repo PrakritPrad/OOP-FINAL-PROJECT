@@ -6,10 +6,8 @@ import { AppModule } from './app.module';
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
 
-  // Enable CORS
   app.enableCors();
 
-  // Global validation pipe
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -18,12 +16,12 @@ async function bootstrap(): Promise<void> {
     }),
   );
 
-  // Swagger/OpenAPI documentation
   const config = new DocumentBuilder()
-    .setTitle('NestJS Backend API')
-    .setDescription('API Documentation for NestJS Backend Project')
+    .setTitle('User & Organization Management API')
+    .setDescription('REST API for managing Users and Organizations — NestJS Final Project (Model Set 0)')
     .setVersion('1.0')
-    .addTag('api')
+    .addTag('Users')
+    .addTag('Organizations')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
