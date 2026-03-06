@@ -192,11 +192,14 @@ interface ApiResponse<T> {
 * 🧮 **Evaluation Criteria** — เกณฑ์การให้คะแนนและการประเมินผล
   → [`subjects/evaluation.md`](subjects/evaluation.md)
 
-### เอกสารทางเทคนิค (ต้องจัดทำ)
+### เอกสารทางเทคนิค
 
-* 🔌 **API Specification (Swagger)** — เอกสาร API ทุก Endpoint
-* 🧱 **Data Model Documentation** — เอกสารอธิบาย Data Model
+* 🔌 **API Specification** — เอกสาร API ทุก Endpoint
+  → [`docs/api-specification.md`](docs/api-specification.md)
+* 🧱 **Data Model Documentation** — เอกสารอธิบาย Data Model และ UML Diagram
+  → [`docs/data-model.md`](docs/data-model.md)
 * 📊 **UML Diagram** — แผนภาพ UML ของ Data Model
+  → [`docs/uml-diagram.png`](docs/uml-diagram.png)
 
 ---
 
