@@ -6,6 +6,7 @@ import { User, UserStatus, SafeUser } from './entities/user.entity';
 import { LowdbService } from '../../common/database/lowdb.service';
 import { generateId } from '../../common/utils/id-generator';
 import { now } from '../../common/utils/date-utils';
+import { OrganizationService } from '../organization/organization.service';
 
 function stripPassword(user: User): SafeUser {
   const { password: _pw, ...safe } = user;
@@ -14,7 +15,10 @@ function stripPassword(user: User): SafeUser {
 
 @Injectable()
 export class UserService {
-  constructor(private readonly lowdb: LowdbService) { }
+  constructor(
+    private readonly lowdb: LowdbService,
+    private readonly organizationService: OrganizationService,
+  ) { }
 
   async create(createUserDto: CreateUserDto): Promise<SafeUser> {
     const users = await this.lowdb.getAll('users');
@@ -27,6 +31,11 @@ export class UserService {
     const usernameExists = users.some((u) => u.username === createUserDto.username);
     if (usernameExists) {
       throw new ConflictException(`Username "${createUserDto.username}" already exists`);
+    }
+
+    // Validate that the organization exists before creating the user (only when provided)
+    if (createUserDto.organizationId) {
+      await this.organizationService.findOne(createUserDto.organizationId);
     }
 
     const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
@@ -75,6 +84,11 @@ export class UserService {
       if (emailExists) {
         throw new ConflictException(`Email "${updateUserDto.email}" already exists`);
       }
+    }
+
+    // Validate organizationId if it is being changed
+    if (updateUserDto.organizationId && updateUserDto.organizationId !== user.organizationId) {
+      await this.organizationService.findOne(updateUserDto.organizationId);
     }
 
     const updated = await this.lowdb.update('users', id, {

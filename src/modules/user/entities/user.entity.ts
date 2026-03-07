@@ -20,7 +20,7 @@ export class User extends BaseEntity {
     phone!: string;
     role!: UserRole;
     status!: UserStatus;
-    organizationId!: string;
+    organizationId?: string;
     department!: string;
     position!: string;
     bio?: string;

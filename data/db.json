@@ -1,0 +1,65 @@
+{
+  "users": [
+    {
+      "id": "4da2a02a-ce22-4e50-a4f5-b9b26b5801a6",
+      "username": "johndoe",
+      "password": "$2b$10$3OUH5xnOwwdvGF1WDWdiJeQpmVAc8zeMVnlfU.HEqxW2ZXyBWArT6",
+      "fullName": "John Doe",
+      "email": "john.doe@example.com",
+      "phone": "+66812345678",
+      "role": "STAFF",
+      "department": "Engineering",
+      "position": "Software Engineer",
+      "bio": "A passionate developer.",
+      "avatarUrl": "https://cdn.example.com/avatar.png",
+      "isEmailVerified": false,
+      "timezone": "Asia/Bangkok",
+      "status": "ACTIVE",
+      "createdAt": "2026-03-07T11:54:53.588Z",
+      "updatedAt": "2026-03-07T11:54:53.588Z"
+    },
+    {
+      "id": "d5b21b4c-9866-4643-8489-54b342c1163e",
+      "username": "johndoee",
+      "password": "$2b$10$gUKf0iGdUcLRK4OTbdbBOew3Afv38oewAlqdFzdi4RBFoc4gUUoF6",
+      "fullName": "John Doe",
+      "email": "john.doe@example.come",
+      "phone": "+66812345678",
+      "role": "STAFF",
+      "organizationId": "913808fc-adbb-4f2c-8661-fd1baf769908",
+      "department": "Engineering",
+      "position": "Software Engineer",
+      "bio": "A passionate developer.",
+      "avatarUrl": "https://cdn.example.com/avatar.png",
+      "isEmailVerified": false,
+      "timezone": "Asia/Bangkok",
+      "lastLoginAt": "2024-01-15T10:30:00Z",
+      "status": "ACTIVE",
+      "createdAt": "2026-03-07T11:58:14.717Z",
+      "updatedAt": "2026-03-07T11:58:14.717Z"
+    }
+  ],
+  "organizations": [
+    {
+      "id": "913808fc-adbb-4f2c-8661-fd1baf769908",
+      "name": "Acme Corporation",
+      "registrationNumber": "TH-1234567",
+      "description": "A leading technology company.",
+      "industry": "Technology",
+      "type": "CORPORATE",
+      "status": "ACTIVE",
+      "website": "https://acme.com",
+      "email": "contact@acme.com",
+      "phone": "+66212345678",
+      "address": "123 Main Street",
+      "city": "Bangkok",
+      "country": "Thailand",
+      "foundedDate": "2010-06-01",
+      "numberOfEmployees": 500,
+      "logo": "https://cdn.acme.com/logo.png",
+      "taxId": "TAX-0000000000",
+      "createdAt": "2026-03-07T11:57:54.321Z",
+      "updatedAt": "2026-03-07T11:57:54.321Z"
+    }
+  ]
+}

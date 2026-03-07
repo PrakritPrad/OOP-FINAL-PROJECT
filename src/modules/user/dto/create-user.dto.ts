@@ -28,9 +28,10 @@ export class CreateUserDto {
   @IsEnum(UserRole)
   role!: UserRole;
 
-  @ApiProperty({ example: 'org-001' })
+  @ApiPropertyOptional({ example: 'org-001' })
+  @IsOptional()
   @IsString()
-  organizationId!: string;
+  organizationId?: string;
 
   @ApiProperty({ example: 'Engineering' })
   @IsString()
@@ -59,7 +60,7 @@ export class CreateUserDto {
   @IsString()
   timezone!: string;
 
-  @ApiPropertyOptional({ example: '2024-01-15T10:30:00Z' })
+  @ApiPropertyOptional({ example: '2024-01-15T10:30:00Z', description: 'System-managed — set automatically on login, do not pass manually' })
   @IsOptional()
   @IsString()
   lastLoginAt?: string;
