@@ -16,11 +16,11 @@ Base URL: `http://localhost:3000`
 
 Swagger: `http://localhost:3000/api`
 
-## ผู้พัฒนาโครงการ
+## ผู้จัดทำ
 
-- Palain Kempanyanurak 68010756
-- Prakrit khwanpatthalung 68010653
-- Siraphat Sapanek 68011141
+- ประกฤษฎิ์ ขวัญพัทลุง 68010653
+- พลอินทุ์ เขมปัญญานุรักษ์ 68010756
+- สิรภัทร ทรัพย์เอนก 68011141
 
 ## Technology Stack
 
@@ -45,20 +45,6 @@ npm install
 
 ```bash
 npm run start:dev
-```
-
-รันแบบ Production
-
-```bash
-npm run build
-npm run start:prod
-```
-
-รันทดสอบ
-
-```bash
-npm run test
-npm run test:e2e
 ```
 
 เมื่อ Server ทำงานแล้ว สามารถเข้าไปดูเอกสารและทดสอบ API ได้ที่ `http://localhost:3000/api`
