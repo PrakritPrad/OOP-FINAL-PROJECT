@@ -28,10 +28,10 @@ Swagger: `http://localhost:3000/api`
 - Language: TypeScript
 - API Style: REST API
 - Database: JSON-based database ด้วย lowdb
-- Authentication: Passport JWT และ bcrypt
+- Authentication: Passport JWT 
 - API Documentation: Swagger (OpenAPI)
 - Validation: class-validator และ class-transformer
-- Testing: Jest และ Supertest
+
 
 ## การติดตั้งและรันโปรเจค
 
